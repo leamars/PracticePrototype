@@ -18,10 +18,13 @@ class ProblemViewController: UIViewController {
     // Data
     var problem: Problem
     var delegate: ProblemViewControllerDelegate?
+    var index: Int = 0
     
     // UI
+    var progressView = UIProgressView(progressViewStyle: .default)
     var solutionLabel = UILabel()
     var problemView: ProblemView
+    var questionLabel = UILabel()
     var mcqAnswersView = MCQAnswersView()
     var bottomBarView = BottomBarDrawerView(with: .correct)
     
@@ -39,9 +42,10 @@ class ProblemViewController: UIViewController {
         return window.safeAreaInsets
     }
     
-    init(with problem: Problem) {
+    init(with problem: Problem, index: Int) {
         self.problem = problem
         self.problemView = ProblemView(problem: problem)
+        self.index = index
         super.init(nibName:nil, bundle:nil)
     }
     
@@ -78,13 +82,40 @@ class ProblemViewController: UIViewController {
         }
         background.alpha = 0
         
-        view.addSubview(problemView)
-        problemView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
+        view.addSubview(progressView)
+        progressView.trackTintColor = .gray100
+        progressView.tintColor = .green500
+        let progress: Float = Float(index) / Float(3)
+        progressView.progress = progress
+        progressView.layer.cornerRadius = 4
+        
+        progressView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(safeAreaInsets.top + 15 + 16)
             make.width.equalToSuperview().multipliedBy(0.9)
-            make.top.equalToSuperview().offset(100)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(8)
         }
         
+        // Attach to bottom of Diagrammar
+//        view.addSubview(problemView)
+//        problemView.snp.makeConstraints { make in
+//            make.centerX.equalToSuperview()
+//            make.width.equalToSuperview().multipliedBy(0.9)
+//            make.top.equalToSuperview().offset(100)
+//        }
+        
+//        questionLabel.text = problem.question
+//        questionLabel.font = .bold(19)
+//        questionLabel.numberOfLines = 0
+//        view.addSubview(questionLabel)
+//        questionLabel.snp.makeConstraints { make in
+//            make.centerX.equalToSuperview()
+//            make.height.equalTo(60)
+//            make.width.equalToSuperview().multipliedBy(0.9)
+//            make.top.equalTo(problemView.snp_bottomMargin).offset(24)
+//        }
+        // Attach to bottom of Diagrammar
+                
         view.addSubview(bottomButtonsView)
         
         bottomButtonsView.snp.makeConstraints { make in
@@ -110,6 +141,27 @@ class ProblemViewController: UIViewController {
             make.width.equalToSuperview().multipliedBy(0.9)
             make.bottom.equalTo(bottomButtonsView.snp_topMargin).offset(-30)
         }
+        
+        // Attach to top of answers
+        questionLabel.text = problem.question
+        questionLabel.font = .bold(19)
+        questionLabel.numberOfLines = 0
+        view.addSubview(questionLabel)
+        questionLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.height.equalTo(60)
+            make.width.equalToSuperview().multipliedBy(0.9)
+            make.bottom.equalTo(mcqAnswersView.snp_topMargin).inset(-24)
+        }
+        
+        view.addSubview(problemView)
+        problemView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.9)
+            make.top.equalToSuperview().offset(100)
+            make.bottom.equalTo(questionLabel.snp_topMargin)
+        }
+        // Attach to top of answers
         
         view.addSubview(bottomBarView)
         bottomBarView.problem = problem
@@ -263,6 +315,9 @@ extension ProblemViewController: BottomBarDelegate {
     func maximizeBottomBarDrawerViewAlternate() {
         
         guard let selectedAnswer = mcqAnswersView.selectedAnswer else { return }
+        
+        progressView.isHidden = true
+        problemView.isHidden = true
                 
         solutionLabel.text = "Explanation"
         solutionLabel.textAlignment = .center
@@ -279,6 +334,8 @@ extension ProblemViewController: BottomBarDelegate {
             make.height.equalTo(32)
         }
         
+        questionLabel.backgroundColor = .white
+        
         view.setNeedsLayout()
         view.layoutIfNeeded()
         
@@ -289,7 +346,15 @@ extension ProblemViewController: BottomBarDelegate {
         bottomBarView.titleStackView.isHidden = true
         bottomBarView.snp.remakeConstraints { make in
             make.width.centerX.bottom.equalToSuperview()
-            make.top.equalTo(problemView).offset(70)
+            make.top.equalTo(problemView).offset(65)
+        }
+        
+        // Stuck to the bottom of solutionlabel
+        questionLabel.snp.remakeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.height.equalTo(60)
+            make.width.equalToSuperview().multipliedBy(0.9)
+            make.top.equalTo(solutionLabel.snp_bottomMargin).offset(24)
         }
                 
         continueButton.buttonStyle = .primary
@@ -363,8 +428,27 @@ extension ProblemViewController: BottomBarDelegate {
     
     func minimizeBottomBarDrawerView() {
         // FOR HACK
+        progressView.isHidden = false
         bottomBarView.titleStackView.isHidden = false
+        problemView.isHidden = false
         solutionLabel.removeFromSuperview()
+        
+        // Stuck to the bottom of diagrammar
+        questionLabel.snp.remakeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.height.equalTo(60)
+            make.width.equalToSuperview().multipliedBy(0.9)
+            make.top.equalTo(problemView.snp_bottomMargin).offset(24)
+        }
+        // Stuck to the top of answers
+        questionLabel.snp.remakeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.height.equalTo(60)
+            make.width.equalToSuperview().multipliedBy(0.9)
+            make.bottom.equalTo(mcqAnswersView.snp_topMargin).inset(-24)
+        }
+        
+        
         // FOR HACK
         
         bottomBarView.snp.remakeConstraints { make in

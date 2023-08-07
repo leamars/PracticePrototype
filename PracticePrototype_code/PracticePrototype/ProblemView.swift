@@ -41,22 +41,22 @@ class ProblemView: UIView {
     func setupViews() {
         
         // Question
-        questionLabel.text = problem.question
-        questionLabel.font = .bold(19)
-        questionLabel.numberOfLines = 0
-        addSubview(questionLabel)
-        questionLabel.snp.makeConstraints { make in
-            make.width.centerX.top.equalToSuperview()
-            make.height.equalTo(QuestionLayout.height)
-        }
+//        questionLabel.text = problem.question
+//        questionLabel.font = .bold(19)
+//        questionLabel.numberOfLines = 0
+//        addSubview(questionLabel)
+//        questionLabel.snp.makeConstraints { make in
+//            make.width.centerX.top.equalToSuperview()
+//            make.height.equalTo(QuestionLayout.height)
+//        }
         
         // Diagrammar
         diagrammarImageView.image = UIImage(named: problem.diagrammar.image)
         diagrammarImageView.contentMode = .scaleAspectFit
         addSubview(diagrammarImageView)
         diagrammarImageView.snp.makeConstraints { make in
-            make.top.equalTo(questionLabel.snp_bottomMargin).offset(DiagrammarLayout.topMargin)
-            make.width.centerX.bottom.equalToSuperview()
+            //make.top.equalTo(questionLabel.snp_bottomMargin).offset(DiagrammarLayout.topMargin)
+            make.top.width.centerX.bottom.equalToSuperview()
         }
     }
 

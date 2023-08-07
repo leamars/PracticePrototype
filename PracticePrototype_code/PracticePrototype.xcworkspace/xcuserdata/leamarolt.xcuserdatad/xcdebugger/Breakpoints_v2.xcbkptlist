@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "7FC9A564-4263-4725-A274-32327A6523D9"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1442301E-1907-45B9-8DAB-E080FEC4ADBF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PracticePrototype/ProblemViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "setupViews()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1442301E-1907-45B9-8DAB-E080FEC4ADBF - 4f9fa5c26240d80f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PracticePrototype.ProblemViewController.setupViews() -&gt; ()"
+                  moduleName = "PracticePrototype"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/leamarolt/Brilliant/PracticePrototype/PracticePrototype_code/PracticePrototype/ProblemViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "1964">
+               </Location>
+               <Location
+                  uuid = "1442301E-1907-45B9-8DAB-E080FEC4ADBF - 4f9fa5c26240d80f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PracticePrototype.ProblemViewController.setupViews() -&gt; ()"
+                  moduleName = "PracticePrototype"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/leamarolt/Brilliant/PracticePrototype/PracticePrototype_code/PracticePrototype/ProblemViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "1912">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D2DAAD9E-D1DF-4501-83DC-8E1B4E58AC5F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PracticePrototype/PracticeIntroViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "viewDidAppear(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D2DAAD9E-D1DF-4501-83DC-8E1B4E58AC5F - f77eb00ac1502e7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PracticePrototype.PracticeIntroViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "PracticePrototype"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/leamarolt/Brilliant/PracticePrototype/PracticePrototype_code/PracticePrototype/PracticeIntroViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "608">
+               </Location>
+               <Location
+                  uuid = "D2DAAD9E-D1DF-4501-83DC-8E1B4E58AC5F - f77eb00ac1502e7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PracticePrototype.PracticeIntroViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "PracticePrototype"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/leamarolt/Brilliant/PracticePrototype/PracticePrototype_code/PracticePrototype/PracticeIntroViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "604">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
