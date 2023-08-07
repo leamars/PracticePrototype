@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "7FC9A564-4263-4725-A274-32327A6523D9"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1442301E-1907-45B9-8DAB-E080FEC4ADBF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PracticePrototype/ProblemViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "setupViews()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1442301E-1907-45B9-8DAB-E080FEC4ADBF - 4f9fa5c26240d80f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PracticePrototype.ProblemViewController.setupViews() -&gt; ()"
+                  moduleName = "PracticePrototype"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/leamarolt/Brilliant/PracticePrototype/PracticePrototype_code/PracticePrototype/ProblemViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "1964">
+               </Location>
+               <Location
+                  uuid = "1442301E-1907-45B9-8DAB-E080FEC4ADBF - 4f9fa5c26240d80f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PracticePrototype.ProblemViewController.setupViews() -&gt; ()"
+                  moduleName = "PracticePrototype"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/leamarolt/Brilliant/PracticePrototype/PracticePrototype_code/PracticePrototype/ProblemViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "1912">
+               </Location>
+               <Location
+                  uuid = "1442301E-1907-45B9-8DAB-E080FEC4ADBF - 4f9fa5c26240de7e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PracticePrototype.ProblemViewController.setupViews() -&gt; ()"
+                  moduleName = "PracticePrototype"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/leamarolt/Brilliant/PracticePrototype/PracticePrototype_code/PracticePrototype/ProblemViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "2600">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0265D6FF-2D20-4A4E-948A-01EA1B2F8695"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PracticePrototype/ProblemViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "setupViews()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

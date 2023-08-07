@@ -34,8 +34,9 @@ class PracticeIntroViewController: UIViewController {
         index = 0
         viewControllers = []
         
-        for problem in problems {
-            viewControllers.append(ProblemViewController(with: problem))
+        for i in 0..<problems.count {
+            let problem = problems[i]
+            viewControllers.append(ProblemViewController(with: problem, index: i))
         }
     }
     
@@ -57,8 +58,9 @@ extension PracticeIntroViewController: ProblemViewControllerDelegate {
         index = index + 1
         
         if index > viewControllers.count - 1 {
-            for problem in problems {
-                viewControllers.append(ProblemViewController(with: problem))
+            for i in 0..<problems.count {
+                let problem = problems[i]
+                viewControllers.append(ProblemViewController(with: problem, index: i))
             }
         }
         

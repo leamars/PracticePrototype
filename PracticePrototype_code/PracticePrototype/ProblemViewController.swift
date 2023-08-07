@@ -18,8 +18,10 @@ class ProblemViewController: UIViewController {
     // Data
     var problem: Problem
     var delegate: ProblemViewControllerDelegate?
+    var index = 0
     
     // UI
+    var progressView = UIProgressView(progressViewStyle: .default)
     var solutionLabel = UILabel()
     var problemView: ProblemView
     var mcqAnswersView = MCQAnswersView()
@@ -39,9 +41,10 @@ class ProblemViewController: UIViewController {
         return window.safeAreaInsets
     }
     
-    init(with problem: Problem) {
+    init(with problem: Problem, index: Int) {
         self.problem = problem
         self.problemView = ProblemView(problem: problem)
+        self.index = index
         super.init(nibName:nil, bundle:nil)
     }
     
@@ -77,6 +80,20 @@ class ProblemViewController: UIViewController {
             make.edges.equalToSuperview()
         }
         background.alpha = 0
+        
+        view.addSubview(progressView)
+        progressView.trackTintColor = .gray100
+        progressView.tintColor = .green500
+        let progress: Float = Float(index) / Float(3)
+        progressView.progress = progress
+        progressView.layer.cornerRadius = 4
+        
+        progressView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(safeAreaInsets.top + 15 + 16)
+            make.width.equalToSuperview().multipliedBy(0.9)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(8)
+        }
         
         view.addSubview(problemView)
         problemView.snp.makeConstraints { make in
@@ -264,6 +281,8 @@ extension ProblemViewController: BottomBarDelegate {
         
         guard let selectedAnswer = mcqAnswersView.selectedAnswer else { return }
                 
+        progressView.isHidden = true
+        
         solutionLabel.text = "Explanation"
         solutionLabel.textAlignment = .center
         solutionLabel.font = .semiBold(16)
@@ -363,6 +382,7 @@ extension ProblemViewController: BottomBarDelegate {
     
     func minimizeBottomBarDrawerView() {
         // FOR HACK
+        progressView.isHidden = false
         bottomBarView.titleStackView.isHidden = false
         solutionLabel.removeFromSuperview()
         // FOR HACK
