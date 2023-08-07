@@ -97,23 +97,23 @@ class ProblemViewController: UIViewController {
         }
         
         // Attach to bottom of Diagrammar
-//        view.addSubview(problemView)
-//        problemView.snp.makeConstraints { make in
-//            make.centerX.equalToSuperview()
-//            make.width.equalToSuperview().multipliedBy(0.9)
-//            make.top.equalToSuperview().offset(100)
-//        }
+        view.addSubview(problemView)
+        problemView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.9)
+            make.top.equalToSuperview().offset(100)
+        }
         
-//        questionLabel.text = problem.question
-//        questionLabel.font = .bold(19)
-//        questionLabel.numberOfLines = 0
-//        view.addSubview(questionLabel)
-//        questionLabel.snp.makeConstraints { make in
-//            make.centerX.equalToSuperview()
-//            make.height.equalTo(60)
-//            make.width.equalToSuperview().multipliedBy(0.9)
-//            make.top.equalTo(problemView.snp_bottomMargin).offset(24)
-//        }
+        questionLabel.text = problem.question
+        questionLabel.font = .bold(19)
+        questionLabel.numberOfLines = 0
+        view.addSubview(questionLabel)
+        questionLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.height.equalTo(60)
+            make.width.equalToSuperview().multipliedBy(0.9)
+            make.top.equalTo(problemView.snp_bottomMargin).offset(24)
+        }
         // Attach to bottom of Diagrammar
                 
         view.addSubview(bottomButtonsView)
@@ -143,24 +143,24 @@ class ProblemViewController: UIViewController {
         }
         
         // Attach to top of answers
-        questionLabel.text = problem.question
-        questionLabel.font = .bold(19)
-        questionLabel.numberOfLines = 0
-        view.addSubview(questionLabel)
-        questionLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.height.equalTo(60)
-            make.width.equalToSuperview().multipliedBy(0.9)
-            make.bottom.equalTo(mcqAnswersView.snp_topMargin).inset(-24)
-        }
-        
-        view.addSubview(problemView)
-        problemView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview().multipliedBy(0.9)
-            make.top.equalToSuperview().offset(100)
-            make.bottom.equalTo(questionLabel.snp_topMargin)
-        }
+//        questionLabel.text = problem.question
+//        questionLabel.font = .bold(19)
+//        questionLabel.numberOfLines = 0
+//        view.addSubview(questionLabel)
+//        questionLabel.snp.makeConstraints { make in
+//            make.centerX.equalToSuperview()
+//            make.height.equalTo(60)
+//            make.width.equalToSuperview().multipliedBy(0.9)
+//            make.bottom.equalTo(mcqAnswersView.snp_topMargin).inset(-24)
+//        }
+//        
+//        view.addSubview(problemView)
+//        problemView.snp.makeConstraints { make in
+//            make.centerX.equalToSuperview()
+//            make.width.equalToSuperview().multipliedBy(0.9)
+//            make.top.equalToSuperview().offset(100)
+//            make.bottom.equalTo(questionLabel.snp_topMargin)
+//        }
         // Attach to top of answers
         
         view.addSubview(bottomBarView)
@@ -441,13 +441,12 @@ extension ProblemViewController: BottomBarDelegate {
             make.top.equalTo(problemView.snp_bottomMargin).offset(24)
         }
         // Stuck to the top of answers
-        questionLabel.snp.remakeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.height.equalTo(60)
-            make.width.equalToSuperview().multipliedBy(0.9)
-            make.bottom.equalTo(mcqAnswersView.snp_topMargin).inset(-24)
-        }
-        
+//        questionLabel.snp.remakeConstraints { make in
+//            make.centerX.equalToSuperview()
+//            make.height.equalTo(60)
+//            make.width.equalToSuperview().multipliedBy(0.9)
+//            make.bottom.equalTo(mcqAnswersView.snp_topMargin).inset(-24)
+//        }
         
         // FOR HACK
         
