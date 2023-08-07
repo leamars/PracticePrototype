@@ -174,6 +174,9 @@ class ProblemViewController: UIViewController {
         if selectedAnswer.isCorrectAnswer {
             bottomBarView.style = .correct
             continueButton.buttonStyle = .primaryCorrect
+            let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .heavy)
+            impactFeedbackgenerator.prepare()
+            impactFeedbackgenerator.impactOccurred()
         } else {
             bottomBarView.style = .incorrect
             whyButton.buttonStyle = .primaryIncorrect
