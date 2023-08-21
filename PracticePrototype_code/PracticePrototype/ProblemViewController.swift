@@ -216,10 +216,7 @@ class ProblemViewController: UIViewController {
     }
 
     @objc func whyPressed(sender: UIButton) {
-//        maximizeBottomBarDrawerView()
-        
-        // HACK
-        maximizeBottomBarDrawerViewAlternate()
+        maximizeBottomBarDrawerView()
     }
     
     @objc func didTapOnBackground(sender: UITapGestureRecognizer) {
@@ -254,72 +251,7 @@ extension ProblemViewController: BottomBarDelegate {
     }
     
     func didSwipeUp(_ bottomBar: BottomBarDrawerView) {
-//        maximizeBottomBarDrawerView()
-        
-        // HACK
-        maximizeBottomBarDrawerViewAlternate()
-    }
-    
-    func maximizeBottomBarDrawerViewAlternate() {
-        
-        guard let selectedAnswer = mcqAnswersView.selectedAnswer else { return }
-                
-        solutionLabel.text = "Explanation"
-        solutionLabel.textAlignment = .center
-        solutionLabel.font = .semiBold(16)
-        solutionLabel.backgroundColor = .gray100
-        solutionLabel.layer.masksToBounds = true
-        solutionLabel.layer.cornerRadius = 8
-        
-        view.addSubview(solutionLabel)
-        solutionLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(safeAreaInsets.top + 15)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(117)
-            make.height.equalTo(32)
-        }
-        
-        view.setNeedsLayout()
-        view.layoutIfNeeded()
-        
-        view.bringSubviewToFront(overlayView)
-        view.bringSubviewToFront(bottomBarView)
-        view.bringSubviewToFront(bottomButtonsView)
-        
-        bottomBarView.titleStackView.isHidden = true
-        bottomBarView.snp.remakeConstraints { make in
-            make.width.centerX.bottom.equalToSuperview()
-            make.top.equalTo(problemView).offset(70)
-        }
-                
-        continueButton.buttonStyle = .primary
-        
-        whyButton.setTitleColor(.clear, for: .normal)
-        
-        UIView.animate(withDuration: 0.2) {
-            // nothing
-            
-            self.whyButton.backgroundColor = .clear
-            self.whyButton.isHidden = true
-            self.whyButton.superview?.setNeedsLayout()
-            self.whyButton.superview?.layoutIfNeeded()
-        } completion: { completed in
-            // This does not animate
-        }
-        
-        UIView.animate(withDuration: 0.25, delay: 0.05, usingSpringWithDamping: 1, initialSpringVelocity: 0.7) {
-            // Darken the background
-            //self.overlayView.backgroundColor = .black200
-            self.bottomBarView.mode = BottomBarMode.explanation
-            
-            // Animate bottom bar constraints
-            self.view.layoutIfNeeded()
-        } completion: { completion in
-            // This does not animate
-            self.bottomBarView.layer.cornerRadius = 0
-            self.bottomBarView.layer.borderColor = UIColor.gray100.cgColor
-            self.bottomBarView.layer.borderWidth = 1
-        }
+        maximizeBottomBarDrawerView()
     }
     
     func maximizeBottomBarDrawerView() {
@@ -362,10 +294,6 @@ extension ProblemViewController: BottomBarDelegate {
     }
     
     func minimizeBottomBarDrawerView() {
-        // FOR HACK
-        bottomBarView.titleStackView.isHidden = false
-        solutionLabel.removeFromSuperview()
-        // FOR HACK
         
         bottomBarView.snp.remakeConstraints { make in
             make.width.centerX.equalToSuperview()

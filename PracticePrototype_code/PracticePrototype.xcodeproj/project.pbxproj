@@ -28,6 +28,7 @@
 		674F0F5029E7DD780028EC73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 674F0F4E29E7DD780028EC73 /* Main.storyboard */; };
 		674F0F5229E7DD780028EC73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 674F0F5129E7DD780028EC73 /* Assets.xcassets */; };
 		674F0F5529E7DD780028EC73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 674F0F5329E7DD780028EC73 /* LaunchScreen.storyboard */; };
+		67524D612A9250C600C94027 /* LessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67524D602A9250C600C94027 /* LessonViewController.swift */; };
 		67C6EB602A7B554A00D1E455 /* ProblemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C6EB5F2A7B554A00D1E455 /* ProblemViewController.swift */; };
 		67C6EB622A7BE04700D1E455 /* practice.json in Resources */ = {isa = PBXBuildFile; fileRef = 67C6EB612A7BE04700D1E455 /* practice.json */; };
 		67C6EB642A7BE07300D1E455 /* Problem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C6EB632A7BE07300D1E455 /* Problem.swift */; };
@@ -62,6 +63,8 @@
 		674F0F5129E7DD780028EC73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		674F0F5429E7DD780028EC73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		674F0F5629E7DD780028EC73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		675004152A8478EA00E5445E /* PracticePrototype.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PracticePrototype.entitlements; sourceTree = "<group>"; };
+		67524D602A9250C600C94027 /* LessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewController.swift; sourceTree = "<group>"; };
 		67C6EB5F2A7B554A00D1E455 /* ProblemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemViewController.swift; sourceTree = "<group>"; };
 		67C6EB612A7BE04700D1E455 /* practice.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = practice.json; sourceTree = "<group>"; };
 		67C6EB632A7BE07300D1E455 /* Problem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Problem.swift; sourceTree = "<group>"; };
@@ -135,10 +138,12 @@
 		674F0F4729E7DD780028EC73 /* PracticePrototype */ = {
 			isa = PBXGroup;
 			children = (
+				675004152A8478EA00E5445E /* PracticePrototype.entitlements */,
 				670A7A5D2A7E9BAE00462205 /* Fonts */,
 				674F0F4829E7DD780028EC73 /* AppDelegate.swift */,
 				674F0F4A29E7DD780028EC73 /* SceneDelegate.swift */,
 				670A7A722A7ED86F00462205 /* NavigationViewController.swift */,
+				67524D602A9250C600C94027 /* LessonViewController.swift */,
 				670A7A742A7EDAF000462205 /* PracticeIntroViewController.swift */,
 				67C6EB5F2A7B554A00D1E455 /* ProblemViewController.swift */,
 				67C6EB672A7BEDE800D1E455 /* ProblemView.swift */,
@@ -284,6 +289,7 @@
 			files = (
 				67C6EB682A7BEDE800D1E455 /* ProblemView.swift in Sources */,
 				670A7A732A7ED86F00462205 /* NavigationViewController.swift in Sources */,
+				67524D612A9250C600C94027 /* LessonViewController.swift in Sources */,
 				670A7A752A7EDAF000462205 /* PracticeIntroViewController.swift in Sources */,
 				670A7A5C2A7D3EDC00462205 /* Colors.swift in Sources */,
 				67C6EB642A7BE07300D1E455 /* Problem.swift in Sources */,
@@ -443,6 +449,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PracticePrototype/PracticePrototype.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2HG8AL7F4U;
@@ -475,6 +482,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PracticePrototype/PracticePrototype.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2HG8AL7F4U;

@@ -6,6 +6,19 @@
 //
 
 import UIKit
+import Foundation
+import OSLog
+
+extension Logger {
+    /// Using your bundle identifier is a great way to ensure a unique identifier.
+    private static var subsystem = Bundle.main.bundleIdentifier!
+
+    /// Logs the view cycles like a view that appeared.
+    static let viewCycle = Logger(subsystem: subsystem, category: "viewcycle")
+
+    /// All logs related to tracking and analytics.
+    static let statistics = Logger(subsystem: subsystem, category: "statistics")
+}
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -16,6 +29,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        let logger = Logger()
+        logger.log(level: .debug, "I am a debug message")
+            logger.log(level: .info, "I am info")
+            logger.log(level: .default, "I am a notice")
+            logger.log(level: .error, "I am an error")
+            logger.log(level: .fault, "I am a fault, you're doomed")
+        
+        if let userActivity = connectionOptions.userActivities.first {
+            debugPrint("got user activity")
+        }
+        
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 
@@ -47,6 +71,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+          let url = userActivity.webpageURL,
+          let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
+          let path = components.path as String? {
+          // Handle the Universal Link
+          print("Universal Link tapped: \(path)")
+        let logger = Logger()
+            logger.log("HELLO LEA MAROLT")
+            
+            logger.log(level: .debug, "I am a debug message")
+                logger.log(level: .info, "I am info")
+                logger.log(level: .default, "I am a notice")
+                logger.log(level: .error, "I am an error")
+                logger.log(level: .fault, "I am a fault, you're doomed")
+        
+        }
+    }
+    
 
 }
 

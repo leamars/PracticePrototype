@@ -11,7 +11,7 @@
         <!--Problem View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ProblemViewController" customModule="ContentAnimationUIKit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ProblemViewController" customModule="PracticePrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,12 +22,28 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="389" y="-673"/>
+            <point key="canvasLocation" x="462" y="-275"/>
+        </scene>
+        <!--Lesson View Controller-->
+        <scene sceneID="JCR-MS-VHh">
+            <objects>
+                <viewController id="Txs-uV-cyV" customClass="LessonViewController" customModule="PracticePrototype" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="s26-k5-xZU">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="nzu-Mh-apw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="cxK-oV-jBe"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j6U-xQ-qEw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="462" y="-965"/>
         </scene>
         <!--Navigation View Controller-->
         <scene sceneID="9de-zG-xG2">
             <objects>
-                <navigationController id="5Vu-rS-Bg0" customClass="NavigationViewController" customModule="ContentAnimationUIKit" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="5Vu-rS-Bg0" customClass="NavigationViewController" customModule="PracticePrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="P6V-xM-ycH">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -44,7 +60,7 @@
         <!--Practice Intro View Controller-->
         <scene sceneID="Ec7-Ia-V08">
             <objects>
-                <viewController id="e21-yz-4XT" customClass="PracticeIntroViewController" customModule="ContentAnimationUIKit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="e21-yz-4XT" customClass="PracticeIntroViewController" customModule="PracticePrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Ap-Wr-ukV">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -58,6 +74,15 @@
                                     <action selector="startPractice:" destination="e21-yz-4XT" eventType="touchUpInside" id="UkH-8x-R7V"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i7W-aR-4fO">
+                                <rect key="frame" x="130" y="386" width="132" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Content Scroll"/>
+                                <connections>
+                                    <segue destination="Txs-uV-cyV" kind="show" id="IFx-me-j74"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Jtr-uD-RG4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -66,7 +91,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TY2-CQ-9kJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-314" y="-673"/>
+            <point key="canvasLocation" x="-315.26717557251908" y="-673.23943661971839"/>
         </scene>
     </scenes>
     <resources>
