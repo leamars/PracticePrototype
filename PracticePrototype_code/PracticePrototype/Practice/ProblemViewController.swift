@@ -21,7 +21,8 @@ class ProblemViewController: UIViewController {
     var index = 0
     
     // UI
-    var progressView = UIProgressView(progressViewStyle: .default)
+    //var progressView = UIProgressView(progressViewStyle: .default)
+    var navBarView = UIImageView()
     var solutionLabel = UILabel()
     var problemView: ProblemView
     var mcqAnswersView = MCQAnswersView()
@@ -35,6 +36,7 @@ class ProblemViewController: UIViewController {
     
     let background = UIImageView()
     let overlayView = UIView()
+    let whiteUnderlayView = UIView()
     
     var safeAreaInsets: UIEdgeInsets {
         guard let window = UIApplication.shared.windows.first else { return UIEdgeInsets.zero }
@@ -81,18 +83,26 @@ class ProblemViewController: UIViewController {
         }
         background.alpha = 0
         
-        view.addSubview(progressView)
-        progressView.trackTintColor = .gray100
-        progressView.tintColor = .green500
-        let progress: Float = Float(index) / Float(3)
-        progressView.progress = progress
-        progressView.layer.cornerRadius = 4
+//        view.addSubview(progressView)
+//        progressView.trackTintColor = .gray100
+//        progressView.tintColor = .green500
+//        let progress: Float = Float(index) / Float(3)
+//        progressView.progress = progress
+//        progressView.layer.cornerRadius = 4
+//
+//        progressView.snp.makeConstraints { make in
+//            make.top.equalToSuperview().offset(safeAreaInsets.top + 15 + 16)
+//            make.width.equalToSuperview().multipliedBy(0.9)
+//            make.centerX.equalToSuperview()
+//            make.height.equalTo(8)
+//        }
         
-        progressView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(safeAreaInsets.top + 15 + 16)
-            make.width.equalToSuperview().multipliedBy(0.9)
+        navBarView = UIImageView(image: UIImage(named: "navBarImage")!)
+        view.addSubview(navBarView)
+        navBarView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(safeAreaInsets.top)
+            make.width.equalToSuperview()
             make.centerX.equalToSuperview()
-            make.height.equalTo(8)
         }
         
         view.addSubview(problemView)
@@ -138,6 +148,9 @@ class ProblemViewController: UIViewController {
         }
         
         view.bringSubviewToFront(bottomButtonsView)
+        
+        whiteUnderlayView.backgroundColor = .white
+        view.insertSubview(whiteUnderlayView, belowSubview: problemView)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -211,7 +224,7 @@ class ProblemViewController: UIViewController {
             self.answerSubmittedDelegate(self.mcqAnswersView)
             
             // HACK FOR FULL EXPLANATION
-            self.hackMoveMCQupAbsolute()
+            //self.hackMoveMCQupAbsolute()
             // HACK FOR FULL EXPLANATION
             
             // Animate bottom bar constraints
@@ -281,21 +294,26 @@ extension ProblemViewController: BottomBarDelegate {
         
         guard let selectedAnswer = mcqAnswersView.selectedAnswer else { return }
                 
-        progressView.isHidden = true
+        //progressView.isHidden = true
         
         solutionLabel.text = "Explanation"
         solutionLabel.textAlignment = .center
         solutionLabel.font = .semiBold(16)
-        solutionLabel.backgroundColor = .gray100
+        solutionLabel.backgroundColor = .white
         solutionLabel.layer.masksToBounds = true
         solutionLabel.layer.cornerRadius = 8
         
         view.addSubview(solutionLabel)
         solutionLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(safeAreaInsets.top + 15)
+            make.top.equalToSuperview().offset(safeAreaInsets.top + 20)
             make.centerX.equalToSuperview()
-            make.width.equalTo(117)
-            make.height.equalTo(32)
+            make.width.equalToSuperview()
+            make.height.equalTo(36)
+        }
+        
+        whiteUnderlayView.snp.makeConstraints { make in
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalTo(solutionLabel.snp_bottomMargin)
         }
         
         view.setNeedsLayout()
@@ -315,8 +333,11 @@ extension ProblemViewController: BottomBarDelegate {
         
         whyButton.setTitleColor(.clear, for: .normal)
         
-        UIView.animate(withDuration: 0.2) {
+        navBarView.layer.opacity = 0
+        
+        UIView.animate(withDuration: 0.25) {
             // nothing
+            self.view.backgroundColor = .gray100
             
             self.whyButton.backgroundColor = .clear
             self.whyButton.isHidden = true
@@ -326,7 +347,7 @@ extension ProblemViewController: BottomBarDelegate {
             // This does not animate
         }
         
-        UIView.animate(withDuration: 0.25, delay: 0.05, usingSpringWithDamping: 1, initialSpringVelocity: 0.7) {
+        UIView.animate(withDuration: 0.30, delay: 0.05, usingSpringWithDamping: 1, initialSpringVelocity: 0.7) {
             // Darken the background
             //self.overlayView.backgroundColor = .black200
             self.bottomBarView.mode = BottomBarMode.explanation
@@ -382,8 +403,7 @@ extension ProblemViewController: BottomBarDelegate {
     
     func minimizeBottomBarDrawerView() {
         // FOR HACK
-        progressView.isHidden = false
-        bottomBarView.titleStackView.isHidden = false
+        //progressView.isHidden = false
         solutionLabel.removeFromSuperview()
         // FOR HACK
         
@@ -396,8 +416,11 @@ extension ProblemViewController: BottomBarDelegate {
         continueButton.buttonStyle = .primary
         whyButton.buttonStyle = .primaryDeemphasized
         
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.25) {
             // nothing
+            self.view.backgroundColor = .white
+            self.navBarView.layer.opacity = 100
+            
             self.overlayView.backgroundColor = .clear
             self.whyButton.isHidden = false
             self.whyButton.backgroundColor = self.whyButton.buttonStyle.bgColor
@@ -407,13 +430,14 @@ extension ProblemViewController: BottomBarDelegate {
             
         } completion: { completed in
             // Show Why button
-             self.whyButton.setTitleColor(self.whyButton.buttonStyle.fontColor, for: .normal)
+            self.whyButton.setTitleColor(self.whyButton.buttonStyle.fontColor, for: .normal)
+            self.bottomBarView.titleStackView.isHidden = false
         }
 
         bottomBarView.descriptionLabel.alpha = 0
         bottomBarView.solutionImageView.alpha = 0
         
-        UIView.animate(withDuration: 0.25, delay: 0.05, usingSpringWithDamping: 1, initialSpringVelocity: 0.7) {
+        UIView.animate(withDuration: 0.30, delay: 0.05, usingSpringWithDamping: 1, initialSpringVelocity: 0.7) {
             // Clear the background
             //self.overlayView.backgroundColor = .clear
             self.bottomBarView.mode = BottomBarMode.result

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5Vu-rS-Bg0">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -11,7 +12,7 @@
         <!--Problem View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ProblemViewController" customModule="ContentAnimationUIKit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ProblemViewController" customModule="PracticePrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,29 +23,45 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="389" y="-673"/>
+            <point key="canvasLocation" x="581" y="-673"/>
         </scene>
         <!--Navigation View Controller-->
         <scene sceneID="9de-zG-xG2">
             <objects>
-                <navigationController id="5Vu-rS-Bg0" customClass="NavigationViewController" customModule="ContentAnimationUIKit" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="5Vu-rS-Bg0" customClass="NavigationViewController" customModule="PracticePrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="P6V-xM-ycH">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="e21-yz-4XT" kind="relationship" relationship="rootViewController" id="stW-Tb-tJX"/>
+                        <segue destination="e21-yz-4XT" kind="relationship" relationship="rootViewController" id="zd2-Ua-Kmd"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5nk-3u-7dg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1022" y="-673"/>
+            <point key="canvasLocation" x="-1358" y="-1040"/>
         </scene>
-        <!--Practice Intro View Controller-->
+        <!--Nav AnimationVC-->
+        <scene sceneID="GPM-Rj-5uy">
+            <objects>
+                <viewController id="7QT-r1-Le2" customClass="NavAnimationVC" customModule="PracticePrototype" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XNG-AH-uVo">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="nlo-Lf-6IN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4vs-3H-PGL"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s4U-z3-68V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-315" y="-1409"/>
+        </scene>
+        <!--Intro View Controller-->
         <scene sceneID="Ec7-Ia-V08">
             <objects>
-                <viewController id="e21-yz-4XT" customClass="PracticeIntroViewController" customModule="ContentAnimationUIKit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="e21-yz-4XT" customClass="IntroViewController" customModule="PracticePrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Ap-Wr-ukV">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -58,6 +75,15 @@
                                     <action selector="startPractice:" destination="e21-yz-4XT" eventType="touchUpInside" id="UkH-8x-R7V"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fhu-Cx-KPb">
+                                <rect key="frame" x="136" y="317" width="120" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Start Lesson"/>
+                                <connections>
+                                    <action selector="startLesson:" destination="e21-yz-4XT" eventType="touchUpInside" id="gvB-eR-NNU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Jtr-uD-RG4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -66,7 +92,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TY2-CQ-9kJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-314" y="-673"/>
+            <point key="canvasLocation" x="-216" y="-673"/>
         </scene>
     </scenes>
     <resources>

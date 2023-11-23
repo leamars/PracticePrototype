@@ -7,62 +7,127 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1442301E-1907-45B9-8DAB-E080FEC4ADBF"
+            uuid = "F3466B14-6DF2-467D-B24E-5D9AC04BA405"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PracticePrototype/BottomBarDrawerView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "mode"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7BB8731A-1786-4D53-9A63-64D029EDBDD1"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PracticePrototype/ProblemViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "setupViews()"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
+            landmarkName = "checkPressed(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "402B053F-7FFD-4B59-9DAB-91FEE90518D3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PracticePrototype/IntroViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "startPractice(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5652BEB9-A1EE-4B8E-B756-54C83297D32F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PracticePrototype/LessonViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
+            landmarkName = "collectionView(_:layout:sizeForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "986F2CA9-D716-42A8-8D6E-7D714057FBCF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PracticePrototype/LessonStepLayout.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "updateOffsetHorizontal(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DD8239E4-7292-4BFA-950B-65DEAC3D0F1B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PracticePrototype/LessonViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "setupCell()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "1442301E-1907-45B9-8DAB-E080FEC4ADBF - 4f9fa5c26240d80f"
+                  uuid = "DD8239E4-7292-4BFA-950B-65DEAC3D0F1B - 4654bc2984d588a2"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "PracticePrototype.ProblemViewController.setupViews() -&gt; ()"
+                  symbolName = "PracticePrototype.LessonViewController.setupCell() -&gt; ()"
                   moduleName = "PracticePrototype"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/leamarolt/Brilliant/PracticePrototype/PracticePrototype_code/PracticePrototype/ProblemViewController.swift"
+                  urlString = "file:///Users/leamarolt/Brilliant/PracticePrototype/PracticePrototype_code/PracticePrototype/LessonViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "88"
-                  endingLineNumber = "88"
-                  offsetFromSymbolStart = "1964">
+                  startingLineNumber = "141"
+                  endingLineNumber = "141"
+                  offsetFromSymbolStart = "224">
                </Location>
                <Location
-                  uuid = "1442301E-1907-45B9-8DAB-E080FEC4ADBF - 4f9fa5c26240d80f"
+                  uuid = "DD8239E4-7292-4BFA-950B-65DEAC3D0F1B - 4654bc2984d5882e"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "PracticePrototype.ProblemViewController.setupViews() -&gt; ()"
+                  symbolName = "PracticePrototype.LessonViewController.setupCell() -&gt; ()"
                   moduleName = "PracticePrototype"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/leamarolt/Brilliant/PracticePrototype/PracticePrototype_code/PracticePrototype/ProblemViewController.swift"
+                  urlString = "file:///Users/leamarolt/Brilliant/PracticePrototype/PracticePrototype_code/PracticePrototype/LessonViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "88"
-                  endingLineNumber = "88"
-                  offsetFromSymbolStart = "1912">
-               </Location>
-               <Location
-                  uuid = "1442301E-1907-45B9-8DAB-E080FEC4ADBF - 4f9fa5c26240de7e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "PracticePrototype.ProblemViewController.setupViews() -&gt; ()"
-                  moduleName = "PracticePrototype"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/leamarolt/Brilliant/PracticePrototype/PracticePrototype_code/PracticePrototype/ProblemViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "105"
-                  endingLineNumber = "105"
-                  offsetFromSymbolStart = "2600">
+                  startingLineNumber = "145"
+                  endingLineNumber = "145"
+                  offsetFromSymbolStart = "424">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -70,15 +135,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0265D6FF-2D20-4A4E-948A-01EA1B2F8695"
+            uuid = "8E0C4A6D-0B1F-4F3D-A46A-9123A09F4C57"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PracticePrototype/ProblemViewController.swift"
+            filePath = "PracticePrototype/LessonViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "781F4D06-66FD-4CD7-AD28-C0599F459858"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PracticePrototype/LessonViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E284A5F2-6EEA-4661-A78A-433471497CE3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PracticePrototype/LessonViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "setupViews()"
             landmarkType = "7">
          </BreakpointContent>

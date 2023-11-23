@@ -202,7 +202,7 @@ extension MCQAnswersView: MCQButtonDelegate {
         
     // HACK REJIG STACKVIEWS
         sender.updateViewForSubmittedAlternate()
-        updateStackViews(with: sender)
+        //updateStackViews(with: sender)
     }
     
     func updateStackViews(with sender: MCQButton) {
@@ -344,7 +344,8 @@ class MCQButton: UIButton {
             titleColor = .green400
             font = .bold(17)
         case (false, false):
-            removeFromSuperview()
+            //removeFromSuperview()
+            return
         case (false, true):
             bgColor = .red100
             cgBorderColor = UIColor.red400.cgColor

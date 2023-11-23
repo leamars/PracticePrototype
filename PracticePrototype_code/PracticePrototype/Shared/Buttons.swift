@@ -19,7 +19,7 @@ enum ButtonStyle {
     var bgColor: UIColor {
         switch self {
         case .primary:
-            return .black
+            return .gray900
         case .secondary:
             return .white
         case .tertiary:
@@ -29,7 +29,7 @@ enum ButtonStyle {
         case .primaryCorrect:
             return .green500
         case .primaryIncorrect:
-            return .red500
+            return .gray900
         }
     }
     

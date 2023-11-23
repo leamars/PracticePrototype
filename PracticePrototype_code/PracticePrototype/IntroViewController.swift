@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PracticeIntroViewController: UIViewController {
+class IntroViewController: UIViewController {
     
     var problems: [Problem] = []
     var viewControllers: [UIViewController] = []
@@ -29,8 +29,13 @@ class PracticeIntroViewController: UIViewController {
            }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        // Reset index back to the beginning, so we can restart practice
+    @IBAction func startLesson(_ sender: Any) {
+        viewControllers = []
+        let lessonVC = LessonViewController()
+        show(lessonVC, sender: self)
+    }
+    
+    @IBAction func startPractice(_ sender: Any) {
         index = 0
         viewControllers = []
         
@@ -38,9 +43,7 @@ class PracticeIntroViewController: UIViewController {
             let problem = problems[i]
             viewControllers.append(ProblemViewController(with: problem, index: i))
         }
-    }
-    
-    @IBAction func startPractice(_ sender: Any) {
+        
         guard let problemVC = viewControllers[index] as? ProblemViewController else { return }
         problemVC.delegate = self
         
@@ -53,7 +56,7 @@ class PracticeIntroViewController: UIViewController {
 
 }
 
-extension PracticeIntroViewController: ProblemViewControllerDelegate {
+extension IntroViewController: ProblemViewControllerDelegate {
     func didPressContinue(_ sender: ProblemViewController) {
         index = index + 1
         

@@ -20,14 +20,18 @@
 		670A7A6F2A7EA57000462205 /* BottomBarDrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670A7A6E2A7EA57000462205 /* BottomBarDrawerView.swift */; };
 		670A7A712A7EB0A600462205 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670A7A702A7EB0A600462205 /* Utils.swift */; };
 		670A7A732A7ED86F00462205 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670A7A722A7ED86F00462205 /* NavigationViewController.swift */; };
-		670A7A752A7EDAF000462205 /* PracticeIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670A7A742A7EDAF000462205 /* PracticeIntroViewController.swift */; };
+		670A7A752A7EDAF000462205 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670A7A742A7EDAF000462205 /* IntroViewController.swift */; };
 		670A7A772A8066FB00462205 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670A7A762A8066FB00462205 /* Animation.swift */; };
+		6744CC4A2AF801E500FEFD95 /* LessonStepLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6744CC492AF801E500FEFD95 /* LessonStepLayout.swift */; };
 		674F0F4929E7DD780028EC73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674F0F4829E7DD780028EC73 /* AppDelegate.swift */; };
 		674F0F4B29E7DD780028EC73 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674F0F4A29E7DD780028EC73 /* SceneDelegate.swift */; };
-		674F0F4D29E7DD780028EC73 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674F0F4C29E7DD780028EC73 /* ViewController.swift */; };
+		674F0F4D29E7DD780028EC73 /* VerticalAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674F0F4C29E7DD780028EC73 /* VerticalAnimationViewController.swift */; };
 		674F0F5029E7DD780028EC73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 674F0F4E29E7DD780028EC73 /* Main.storyboard */; };
 		674F0F5229E7DD780028EC73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 674F0F5129E7DD780028EC73 /* Assets.xcassets */; };
 		674F0F5529E7DD780028EC73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 674F0F5329E7DD780028EC73 /* LaunchScreen.storyboard */; };
+		67AA06702AF6FCA10034E437 /* LessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AA066F2AF6FCA10034E437 /* LessonViewController.swift */; };
+		67AA06752AF6FE2C0034E437 /* LessonStepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AA06742AF6FE2C0034E437 /* LessonStepCell.swift */; };
+		67AA06772AF6FE840034E437 /* UICollectionView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AA06762AF6FE840034E437 /* UICollectionView+Helpers.swift */; };
 		67C6EB602A7B554A00D1E455 /* ProblemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C6EB5F2A7B554A00D1E455 /* ProblemViewController.swift */; };
 		67C6EB622A7BE04700D1E455 /* practice.json in Resources */ = {isa = PBXBuildFile; fileRef = 67C6EB612A7BE04700D1E455 /* practice.json */; };
 		67C6EB642A7BE07300D1E455 /* Problem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C6EB632A7BE07300D1E455 /* Problem.swift */; };
@@ -52,16 +56,20 @@
 		670A7A6E2A7EA57000462205 /* BottomBarDrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarDrawerView.swift; sourceTree = "<group>"; };
 		670A7A702A7EB0A600462205 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		670A7A722A7ED86F00462205 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
-		670A7A742A7EDAF000462205 /* PracticeIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeIntroViewController.swift; sourceTree = "<group>"; };
+		670A7A742A7EDAF000462205 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		670A7A762A8066FB00462205 /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		6744CC492AF801E500FEFD95 /* LessonStepLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonStepLayout.swift; sourceTree = "<group>"; };
 		674F0F4529E7DD780028EC73 /* PracticePrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PracticePrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		674F0F4829E7DD780028EC73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		674F0F4A29E7DD780028EC73 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		674F0F4C29E7DD780028EC73 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		674F0F4C29E7DD780028EC73 /* VerticalAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalAnimationViewController.swift; sourceTree = "<group>"; };
 		674F0F4F29E7DD780028EC73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		674F0F5129E7DD780028EC73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		674F0F5429E7DD780028EC73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		674F0F5629E7DD780028EC73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		67AA066F2AF6FCA10034E437 /* LessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewController.swift; sourceTree = "<group>"; };
+		67AA06742AF6FE2C0034E437 /* LessonStepCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LessonStepCell.swift; path = Assets.xcassets/LessonStepCell.swift; sourceTree = "<group>"; };
+		67AA06762AF6FE840034E437 /* UICollectionView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Helpers.swift"; sourceTree = "<group>"; };
 		67C6EB5F2A7B554A00D1E455 /* ProblemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemViewController.swift; sourceTree = "<group>"; };
 		67C6EB612A7BE04700D1E455 /* practice.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = practice.json; sourceTree = "<group>"; };
 		67C6EB632A7BE07300D1E455 /* Problem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Problem.swift; sourceTree = "<group>"; };
@@ -135,29 +143,57 @@
 		674F0F4729E7DD780028EC73 /* PracticePrototype */ = {
 			isa = PBXGroup;
 			children = (
-				670A7A5D2A7E9BAE00462205 /* Fonts */,
-				674F0F4829E7DD780028EC73 /* AppDelegate.swift */,
-				674F0F4A29E7DD780028EC73 /* SceneDelegate.swift */,
 				670A7A722A7ED86F00462205 /* NavigationViewController.swift */,
-				670A7A742A7EDAF000462205 /* PracticeIntroViewController.swift */,
+				670A7A742A7EDAF000462205 /* IntroViewController.swift */,
+				67AA066F2AF6FCA10034E437 /* LessonViewController.swift */,
+				67AA06742AF6FE2C0034E437 /* LessonStepCell.swift */,
+				6744CC492AF801E500FEFD95 /* LessonStepLayout.swift */,
+				674F0F5629E7DD780028EC73 /* Info.plist */,
+				67AA06732AF6FCCD0034E437 /* Shared */,
+				67AA06722AF6FCB90034E437 /* Other */,
+				67AA06712AF6FCAE0034E437 /* Practice */,
+				670A7A5D2A7E9BAE00462205 /* Fonts */,
+				674F0F4E29E7DD780028EC73 /* Main.storyboard */,
+				674F0F5129E7DD780028EC73 /* Assets.xcassets */,
+				674F0F5329E7DD780028EC73 /* LaunchScreen.storyboard */,
+			);
+			path = PracticePrototype;
+			sourceTree = "<group>";
+		};
+		67AA06712AF6FCAE0034E437 /* Practice */ = {
+			isa = PBXGroup;
+			children = (
+				67C6EB612A7BE04700D1E455 /* practice.json */,
 				67C6EB5F2A7B554A00D1E455 /* ProblemViewController.swift */,
 				67C6EB672A7BEDE800D1E455 /* ProblemView.swift */,
 				670A7A592A7C087E00462205 /* MCQAnswerView.swift */,
 				670A7A6E2A7EA57000462205 /* BottomBarDrawerView.swift */,
-				674F0F4C29E7DD780028EC73 /* ViewController.swift */,
 				67C6EB632A7BE07300D1E455 /* Problem.swift */,
-				67C6EB612A7BE04700D1E455 /* practice.json */,
-				674F0F4E29E7DD780028EC73 /* Main.storyboard */,
-				674F0F5129E7DD780028EC73 /* Assets.xcassets */,
-				674F0F5329E7DD780028EC73 /* LaunchScreen.storyboard */,
-				674F0F5629E7DD780028EC73 /* Info.plist */,
+			);
+			path = Practice;
+			sourceTree = "<group>";
+		};
+		67AA06722AF6FCB90034E437 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				674F0F4C29E7DD780028EC73 /* VerticalAnimationViewController.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		67AA06732AF6FCCD0034E437 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				674F0F4A29E7DD780028EC73 /* SceneDelegate.swift */,
+				674F0F4829E7DD780028EC73 /* AppDelegate.swift */,
 				670A7A5B2A7D3EDC00462205 /* Colors.swift */,
 				670A7A662A7E9C4700462205 /* Fonts.swift */,
 				670A7A6C2A7EA00B00462205 /* Buttons.swift */,
 				670A7A702A7EB0A600462205 /* Utils.swift */,
 				670A7A762A8066FB00462205 /* Animation.swift */,
+				67AA06762AF6FE840034E437 /* UICollectionView+Helpers.swift */,
 			);
-			path = PracticePrototype;
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,16 +320,20 @@
 			files = (
 				67C6EB682A7BEDE800D1E455 /* ProblemView.swift in Sources */,
 				670A7A732A7ED86F00462205 /* NavigationViewController.swift in Sources */,
-				670A7A752A7EDAF000462205 /* PracticeIntroViewController.swift in Sources */,
+				670A7A752A7EDAF000462205 /* IntroViewController.swift in Sources */,
 				670A7A5C2A7D3EDC00462205 /* Colors.swift in Sources */,
 				67C6EB642A7BE07300D1E455 /* Problem.swift in Sources */,
-				674F0F4D29E7DD780028EC73 /* ViewController.swift in Sources */,
+				674F0F4D29E7DD780028EC73 /* VerticalAnimationViewController.swift in Sources */,
 				670A7A6F2A7EA57000462205 /* BottomBarDrawerView.swift in Sources */,
 				67C6EB602A7B554A00D1E455 /* ProblemViewController.swift in Sources */,
+				67AA06702AF6FCA10034E437 /* LessonViewController.swift in Sources */,
+				67AA06752AF6FE2C0034E437 /* LessonStepCell.swift in Sources */,
 				670A7A6D2A7EA00B00462205 /* Buttons.swift in Sources */,
 				670A7A5A2A7C087E00462205 /* MCQAnswerView.swift in Sources */,
+				67AA06772AF6FE840034E437 /* UICollectionView+Helpers.swift in Sources */,
 				674F0F4929E7DD780028EC73 /* AppDelegate.swift in Sources */,
 				670A7A672A7E9C4700462205 /* Fonts.swift in Sources */,
+				6744CC4A2AF801E500FEFD95 /* LessonStepLayout.swift in Sources */,
 				674F0F4B29E7DD780028EC73 /* SceneDelegate.swift in Sources */,
 				670A7A772A8066FB00462205 /* Animation.swift in Sources */,
 				670A7A712A7EB0A600462205 /* Utils.swift in Sources */,
@@ -373,7 +413,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -427,7 +467,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
