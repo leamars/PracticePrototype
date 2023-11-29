@@ -13,17 +13,27 @@ struct Problem: Codable {
     var diagrammar: Diagrammar
     var answers: [Answer]
     var explanation: [ExplanationStep]
+    var correctIndex: Int?
+    var miniView: MiniView
+    var isSolved: Bool
+    var chosenIndex: Int?
 }
 
 struct Diagrammar: Codable {
     var image: String
     var caption: String
+    var altImages: [String]
 }
 
 struct Answer: Codable {
     var title: String
     var correct: Bool
     var isSelected: Bool
+}
+
+struct MiniView: Codable {
+    var correct: String
+    var incorrect: String
 }
 
 struct ExplanationStep: Codable {

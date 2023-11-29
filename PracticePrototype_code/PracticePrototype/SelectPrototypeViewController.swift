@@ -7,9 +7,10 @@
 
 import UIKit
 
-class IntroViewController: UIViewController {
+class SelectPrototypeViewController: UIViewController {
     
     var problems: [Problem] = []
+    var dataLessonSteps: [LessonStep] = []
     var viewControllers: [UIViewController] = []
     private var index = 0
 
@@ -27,11 +28,28 @@ class IntroViewController: UIViewController {
            } catch {
               print(error)
            }
+        
+        do {
+              if let bundlePath = Bundle.main.path(forResource: "dataLesson", ofType: "json"),
+              let jsonData = try String(contentsOfFile: bundlePath).data(using: .utf8) {
+                  
+                  dataLessonSteps = try decorder.decode([LessonStep].self, from: jsonData)
+              }
+           } catch {
+              print(error)
+           }
     }
     
     @IBAction func startLesson(_ sender: Any) {
+        
+        // clear out practice VCs basically
         viewControllers = []
-        let lessonVC = LessonViewController()
+//        let lessonVC = LessonViewController()
+//        show(lessonVC, sender: self)
+//        let lessonIntroVC = LessonIntroViewController(with: dataLessonSteps)
+//        show(lessonIntroVC, sender: self)
+        
+        let lessonVC = LessonViewController(with: dataLessonSteps)
         show(lessonVC, sender: self)
     }
     
@@ -56,7 +74,7 @@ class IntroViewController: UIViewController {
 
 }
 
-extension IntroViewController: ProblemViewControllerDelegate {
+extension SelectPrototypeViewController: ProblemViewControllerDelegate {
     func didPressContinue(_ sender: ProblemViewController) {
         index = index + 1
         

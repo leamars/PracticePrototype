@@ -124,8 +124,6 @@ class BottomBarDrawerView: UIView {
     
     func setupViews() {
         backgroundColor = style.bgColor
-//        layer.borderWidth = 1
-//        layer.borderColor = UIColor.gray300.cgColor
         
         contentView.backgroundColor = style.bgColor
         addSubview(contentView)

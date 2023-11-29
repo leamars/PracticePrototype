@@ -1,0 +1,143 @@
+[
+    {
+        "type": "content",
+        "content": {
+            "images": ["data-2"],
+            "height": 344
+        }
+    },
+    {
+        "type": "playable",
+        "playable": {
+            "images": ["data-3"],
+            "height": 390
+        }
+    },
+    {
+        "type": "solvable",
+        "solvable": {
+            "question": "Which state has the most Starbucks Cafes?",
+            "type": "mcq",
+            "diagrammar":
+            {
+                "image": "data_dia_problem_1",
+                "caption": "Here is a bar chart and a pie chart of Starbucks locations across a few states.",
+                "altImages": []
+            },
+            "answers": [
+                {
+                    "title": "California",
+                    "correct": true,
+                    "isSelected": false
+                },
+                {
+                    "title": "Washington",
+                    "correct": false,
+                    "isSelected": false
+                },
+                {
+                    "title": "Florida",
+                    "correct": false,
+                    "isSelected": false
+                }
+            ],
+            "explanation": [
+                {
+                    "image": "data_dia_solution_1_1",
+                    "description": "California is the tallest bar on the bar chart. It is also the largest of the five colored wedges in the pie chart. So, it has the largest number of cafes."
+                }
+            ],
+            "miniView": {
+                "correct": "data_dia_mini_1",
+                "incorrect": "data_dia_mini_1_alt"
+            },
+            "isSolved": false
+        }
+    },
+    {
+        "type": "solvable",
+        "solvable": {
+            "question": "Which state has the most Starbucks Cafes, FL or WA?",
+            "type": "mcq",
+            "diagrammar":
+            {
+                "image": "data_dia_problem_2",
+                "caption": "It's easy to see that California has the most cafes, but not every comparison is this straightforward.",
+                "altImages": []
+            },
+            "answers": [
+                {
+                    "title": "Florida",
+                    "correct": true,
+                    "isSelected": false
+                },
+                {
+                    "title": "Washington",
+                    "correct": false,
+                    "isSelected": false
+                }
+            ],
+            "explanation": [
+                {
+                    "image": "dia_solution_2_1",
+                    "description": "The bar representing Florida is a little taller than the one representing Washington, indicating a larger number of cafes."
+                }
+            ],
+            "miniView": {
+                "correct": "data_dia_mini_2",
+                "incorrect": "data_dia_mini_2_alt"
+            },
+            "isSolved": false
+        }
+    },
+    {
+        "type": "solvable",
+        "solvable": {
+            "question": "Which chart is best to estimate the % of cafes in California?",
+            "type": "diagrammar",
+            "diagrammar":
+            {
+                "image": "data_dia_problem_3",
+                "caption": "",
+                "altImages": ["data_dia_answer_3_1", "data_dia_answer_3_2"]
+            },
+            "answers": [],
+            "correctIndex": 1,
+            "chosenIndex": -1,
+            "explanation": [
+                {
+                    "image": "data_dia_solution_3_1",
+                    "description": "The pie chart lets us compare the wedge representing each category to the total. "
+                },
+                {
+                    "image": "data_dia_solution_3_1",
+                    "description": "You can't tell how large the total is on a bar chart without adding up the height of each bar."
+                },
+                {
+                    "image": "data_dia_solution_3_1",
+                    "description": "And this particular bar chart does not even include bars for the other 45 states."
+                }
+            ],
+            "miniView": {
+                "correct": "data_dia_mini_3",
+                "incorrect": "data_dia_mini_3_alt"
+            },
+            "isSolved": false
+        }
+    },
+    {
+        "type": "content",
+        "content": {
+            "images": ["data-7"],
+            "height": 274
+        }
+    },
+    {
+        "type": "content",
+        "content": {
+            "images": ["data-8"],
+            "height": 439
+        }
+    }
+]
+

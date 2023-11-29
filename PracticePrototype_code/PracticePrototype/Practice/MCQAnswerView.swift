@@ -332,6 +332,7 @@ class MCQButton: UIButton {
         var titleColor: UIColor = currentTitleColor
         var font: UIFont = titleLabel?.font ?? .regular(17)
         
+        print("\(title) is \(isCorrectAnswer) and \(isPressed ? "is" : "is not") pressed")
         switch (isCorrectAnswer, isPressed) {
         case (true, true):
             bgColor = .green100
@@ -339,13 +340,16 @@ class MCQButton: UIButton {
             titleColor = .green400
             font = .bold(17)
         case (true, false):
-            bgColor = .green100
-            cgBorderColor = UIColor.green400.cgColor
-            titleColor = .green400
-            font = .bold(17)
+//            bgColor = .green100
+//            cgBorderColor = UIColor.green400.cgColor
+//            titleColor = .green400
+//            font = .bold(17)
+            cgBorderColor = UIColor.gray100.cgColor
+            titleColor = .gray200
         case (false, false):
             //removeFromSuperview()
-            return
+            cgBorderColor = UIColor.gray100.cgColor
+            titleColor = .gray200
         case (false, true):
             bgColor = .red100
             cgBorderColor = UIColor.red400.cgColor

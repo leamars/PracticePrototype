@@ -58,10 +58,10 @@
             </objects>
             <point key="canvasLocation" x="-315" y="-1409"/>
         </scene>
-        <!--Intro View Controller-->
+        <!--Select Prototype View Controller-->
         <scene sceneID="Ec7-Ia-V08">
             <objects>
-                <viewController id="e21-yz-4XT" customClass="IntroViewController" customModule="PracticePrototype" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="e21-yz-4XT" customClass="SelectPrototypeViewController" customModule="PracticePrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Ap-Wr-ukV">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
