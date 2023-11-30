@@ -44,12 +44,15 @@ class SelectPrototypeViewController: UIViewController {
         
         // clear out practice VCs basically
         viewControllers = []
-//        let lessonVC = LessonViewController()
-//        show(lessonVC, sender: self)
-//        let lessonIntroVC = LessonIntroViewController(with: dataLessonSteps)
-//        show(lessonIntroVC, sender: self)
+
+        let lessonVC = LessonViewController(with: dataLessonSteps, layoutType: .horizontal)
+        show(lessonVC, sender: self)
+    }
+    
+    @IBAction func startVerticalLesson(_ sender: Any) {
+        viewControllers = []
         
-        let lessonVC = LessonViewController(with: dataLessonSteps)
+        let lessonVC = LessonViewController(with: dataLessonSteps, layoutType: .vertical)
         show(lessonVC, sender: self)
     }
     

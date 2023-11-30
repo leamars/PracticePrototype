@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-private struct QuestionLayout {
+struct QuestionLayout {
     static let topMargin: CGFloat = 68.0
     static let height: CGFloat = 60.0
 }

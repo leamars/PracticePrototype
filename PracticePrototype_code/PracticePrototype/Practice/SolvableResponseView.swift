@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-enum BottomBarStyle {
+enum SolvableResponseStyle {
     case correct
     case incorrect
     case tryAgain
@@ -19,7 +19,6 @@ enum BottomBarStyle {
             return .green200
         case .incorrect:
             return .gray100
-//            return .red200
         case .tryAgain:
             return .gray200
         }
@@ -52,23 +51,23 @@ enum BottomBarStyle {
     }
 }
 
-enum BottomBarMode {
+enum SolvableResponseMode {
     // Just showing the "result", so "correct, incorrect, try again"
     case result
     // Showing the full explanation
     case explanation
 }
 
-protocol BottomBarDelegate: AnyObject {
-    func didChangeBottomBarMode(_ bottomBar: BottomBarDrawerView)
-    func didSwipeDown(_ bottomBar: BottomBarDrawerView)
-    func didSwipeUp(_ bottomBar: BottomBarDrawerView)
+protocol SolvableResponseDelegate: AnyObject {
+    func didChangeSolvableResponseMode(_ bottomBar: SolvableResponseView)
+    func didSwipeDown(_ bottomBar: SolvableResponseView)
+    func didSwipeUp(_ bottomBar: SolvableResponseView)
 }
 
-class BottomBarDrawerView: UIView {
+class SolvableResponseView: UIView {
 
     // Data
-    var style: BottomBarStyle {
+    var style: SolvableResponseStyle {
         didSet {
             backgroundColor = style.bgColor
             contentView.backgroundColor = style.bgColor
@@ -77,7 +76,7 @@ class BottomBarDrawerView: UIView {
         }
     }
     
-    var mode: BottomBarMode = .result {
+    var mode: SolvableResponseMode = .result {
         didSet {
             switch mode {
             case .explanation:
@@ -88,7 +87,7 @@ class BottomBarDrawerView: UIView {
         }
     }
     
-    var delegate: BottomBarDelegate?
+    var delegate: SolvableResponseDelegate?
     var problem: Problem? {
         didSet {
             setupViews()
@@ -107,12 +106,12 @@ class BottomBarDrawerView: UIView {
     
     private var answerIndex = 0
     
-    init(with style: BottomBarStyle) {
+    init(with style: SolvableResponseStyle) {
         self.style = style
         super.init(frame: .zero)
     }
     
-    init(with style: BottomBarStyle, problem: Problem) {
+    init(with style: SolvableResponseStyle, problem: Problem) {
         self.style = style
         self.problem = problem
         super.init(frame: .zero)
@@ -123,47 +122,44 @@ class BottomBarDrawerView: UIView {
     }
     
     func setupViews() {
-        backgroundColor = style.bgColor
-        
-        contentView.backgroundColor = style.bgColor
         addSubview(contentView)
-        
+
         contentView.snp.makeConstraints { make in
             make.leading.top.equalToSuperview().offset(24)
             make.bottom.trailing.equalToSuperview().inset(24)
         }
-        
+
         emojiImageView.image = style.image
         label.text = style.title
         label.font = .bold(20)
-        
+
         titleStackView = UIStackView(arrangedSubviews: [emojiImageView, label])
         titleStackView.axis = .horizontal
         titleStackView.distribution = .fillProportionally
         titleStackView.spacing = 8
         contentView.addSubview(titleStackView)
-        
+
         titleStackView.snp.makeConstraints { make in
             make.left.right.top.equalToSuperview()
         }
-        
+
         emojiImageView.snp.makeConstraints { make in
             make.height.width.equalTo(32)
         }
-        
+
         guard let problem = problem else { return }
         
         let solutionImage = UIImage(named: problem.explanation.first!.image)!
         solutionImageView.image = solutionImage
         solutionImageView.contentMode = .scaleAspectFit
-        
+
         contentView.addSubview(solutionImageView)
-        
+
         solutionImageView.snp.makeConstraints { make in
             make.top.equalTo(titleStackView.snp_bottomMargin).offset(16)
             make.width.centerX.equalToSuperview()
         }
-        
+
         pageControl.hidesForSinglePage = true
         pageControl.currentPage = answerIndex
         pageControl.numberOfPages = problem.explanation.count
@@ -178,9 +174,9 @@ class BottomBarDrawerView: UIView {
         }
 
         descriptionLabel.numberOfLines = 5
-        
+
         let longestDescription = problem.explanation.max(by: {$1.description.count > $0.description.count} )?.description
-        
+
         descriptionLabel.text = longestDescription ?? ""
         descriptionLabel.font = .regular(17)
         descriptionLabel.textColor = .black
@@ -191,11 +187,11 @@ class BottomBarDrawerView: UIView {
             make.centerX.width.equalToSuperview()
             make.bottom.equalToSuperview().inset(100)
         }
-        
+
         pageControl.alpha = 0
         solutionImageView.alpha = 0
         descriptionLabel.alpha = 0
-        
+
         setupTouchGestures()
     }
     
@@ -288,7 +284,7 @@ class BottomBarDrawerView: UIView {
         contentView.backgroundColor = .white
         animateCornerRadius(from: layer.cornerRadius, to: 16, duration: 0.2)
         
-        label.text = "Explanation!"
+        //label.text = "Explanation!"
         emojiImageView.image = UIImage(named: "magnifyingGlass")!
         
         // Ensure that the height of the description stays the same, based off of the longest description
@@ -304,7 +300,7 @@ class BottomBarDrawerView: UIView {
         descriptionLabel.alpha = 1
         
     }
-    
+        
     func showResult() {
         backgroundColor = style.bgColor
         contentView.backgroundColor = style.bgColor

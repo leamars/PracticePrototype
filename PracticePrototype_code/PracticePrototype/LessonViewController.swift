@@ -10,10 +10,19 @@ import SnapKit
 
 
 class LessonViewController: UIViewController {
-    // DATA!
-    var lessonSteps: [LessonStep]
     
-    // UI STUFF
+    // Lesson Data
+    var lessonSteps: [LessonStep]
+    var currentStep: LessonStep {
+        get {
+            return lessonSteps[layout.currentPage]
+        }
+        set {
+            lessonSteps[layout.currentPage] = newValue
+        }
+    }
+    
+    // UI
     let screenWidth = UIScreen.main.bounds.size.width
     let screenHeight = UIScreen.main.bounds.size.height
     
@@ -33,25 +42,20 @@ class LessonViewController: UIViewController {
         
     let progressView = ProgressBarView(frame: .zero)
     let progressViewBg = UIView()
-    
-    // All of these are essential to the bottom bar!
-    var bottomBarView = BottomBarDrawerView(with: .correct)
-    var bottomButtonsView = UIView()
-    var checkButton = BitsButton.create(withStyle: .primary, title: "Check")
-    var continueStepButton = BitsButton.create(withStyle: .primary, title: "Continue")
-    var continueButton = BitsButton.create(withStyle: .primary, title: "Continue")
-    var whyButton = BitsButton.create(withStyle: .primaryDeemphasized, title: "Why?")
+    var bottomBarView: BottomBarView
     
     var itemW: CGFloat {
-        return screenWidth * 0.92
+        return 352.0
     }
     
     var itemH: CGFloat {
         return 595.0
     }
     
-    init(with lessonSteps: [LessonStep]) {
+    init(with lessonSteps: [LessonStep], layoutType: LayoutType) {
         self.lessonSteps = lessonSteps
+        self.bottomBarView = BottomBarView(with: lessonSteps[0])
+        self.layout.layoutType = layoutType
         super.init(nibName:nil, bundle:nil)
     }
     
@@ -67,27 +71,115 @@ class LessonViewController: UIViewController {
             guard let self = self else { return }
             pageDidChange()
         }
+        
+        bottomBarView.checkPressedWithCompletion = { [weak self]  in
+            guard let self = self else { return }
+            updateBottomBarForCheckPressed()
+        }
+        
+        bottomBarView.continuePressedWithCompletion = { [weak self]  in
+            guard let self = self else { return }
+            minimizeBottomBar()
+            continueToNextStep()
+        }
+        
+        bottomBarView.whyPressedWithCompletion = { [weak self]  in
+            guard let self = self else { return }
+
+            bottomBarView.snp.remakeConstraints { make in
+                make.width.centerX.bottom.equalToSuperview()
+                make.top.equalToSuperview().offset(150)
+            }
+            
+            progressView.layer.opacity = 0
+            
+            if layout.layoutType == .horizontal {
+                self.collectionView.snp.remakeConstraints { make in
+                    make.edges.equalToSuperview()
+                }
+            }
+            
+            self.view.layoutIfNeeded()
+            self.containerView.layoutIfNeeded()
+            
+            UIView.animate(withDuration: 0.25) {
+                // nothing
+                self.bottomBarView.showExplanation()
+                
+                if self.layout.layoutType == .vertical {
+                    self.collectionView.snp.remakeConstraints { make in
+                        make.left.right.equalToSuperview()
+                        make.top.equalTo(self.progressView.snp.bottom).offset(-QuestionLayout.height/3)
+                        make.bottom.equalToSuperview()
+                    }
+                } else {
+                    self.collectionView.transform = CGAffineTransform(translationX: 0, y: -QuestionLayout.height/3)
+                }
+                
+            } completion: { completed in
+                // This does not animate
+            }
+        }
+        
+        bottomBarView.didCloseExplanationWithCompletion = { [weak self]  in
+            guard let self = self else { return }
+            minimizeBottomBar()
+        }
+        
+        bottomBarView.contStepPressedWithCompletion = { [weak self]  in
+            guard let self = self else { return }
+            continueToNextStep()
+        }
     }
     
-    // THIS DOESN'T WORK AS EXPECTED :(
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    func updateBottomBarForCheckPressed() {
+        guard let solvable = currentStep.solvable else { return }
         
-        let indexPath = IndexPath(item: 0, section: 0)
-        collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: false)
+        var isCorrect = false
+        
+        switch solvable.type {
+        case .diagrammar:
+            guard let correctIndex = solvable.correctIndex, let chosenIndex = solvable.chosenIndex else { return }
+            isCorrect = correctIndex == chosenIndex
+        case .mcq:
+            let indexPath = IndexPath(item: layout.currentPage, section: 0)
+            guard let cell = collectionView.cellForItem(at: indexPath) as? LessonStepCell,
+                  let selectedAnswer = cell.mcqAnswersView.selectedAnswer else { return }
+            isCorrect = selectedAnswer.isCorrectAnswer
+        case .envelope, .simson: break
+        }
+        
+        bottomBarView.showWhyAndContinue(withAnswer: isCorrect, problem: solvable)
+    }
+    
+    func minimizeBottomBar() {
+        bottomBarView.snp.remakeConstraints { make in
+            make.bottom.width.centerX.equalToSuperview()
+            make.height.equalTo(92)
+        }
+        
+        collectionView.snp.remakeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(progressView.snp.bottom)
+            make.bottom.equalTo(bottomBarView.snp.top)
+        }
+        
+        progressView.layer.opacity = 1
+        
+        UIView.animate(withDuration: 0.25) {
+            // nothing
+            self.collectionView.transform = .identity
+            self.updateBottomBarForCheckPressed()
+            self.view.layoutIfNeeded()
+            self.containerView.layoutIfNeeded()
+        } completion: { completed in
+            // This does not animate
+        }
     }
     
 
     func setupViews() {
         view.backgroundColor = .white
-        
-        solvableModeImg.image = UIImage(named: "dotted")
-        containerView.addSubview(solvableModeImg)
-        solvableModeImg.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        solvableModeImg.layer.opacity = 0.0
-        
         view.addSubview(containerView)
         containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -111,21 +203,15 @@ class LessonViewController: UIViewController {
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
-        // 50.0 is equal to the "minimumLineSpacing", so that the first and last item have the same offset as all the rest
         collectionView.decelerationRate = .fast
         
         collectionView.registerCell(LessonStepCell.self)
         collectionView.dataSource = self
         collectionView.delegate = self
         containerView.addSubview(collectionView)
-        
         collectionView.backgroundColor = .clear
 
         setupBottomBar()
-        checkButton.isEnabled = false
-        checkButton.isHidden = true
-        continueStepButton.isEnabled = true
-        continueStepButton.isHidden = false
         
         setupVerticalNavigation()
         
@@ -160,192 +246,52 @@ class LessonViewController: UIViewController {
     }
     
     @objc func startPressed(sender: UIButton) {
-        print("Animate this out...")
-        
-        let translationTransform = CGAffineTransform(translationX: 0, y: -screenHeight)
-        //containerView.transform = CGAffineTransform(translationX: 0, y: 2*screenHeight)
+        animteIntroBookendOut()
+    }
+    
+    private func animteIntroBookendOut() {
+        var translationTransform: CGAffineTransform
+        switch layout.layoutType {
+        case .horizontal:
+            translationTransform = CGAffineTransform(translationX: -screenWidth, y: 0)
+        case .vertical, .verticalHug:
+            translationTransform = CGAffineTransform(translationX: 0, y: -screenHeight)
+        }
         
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
             self.introImage.transform = translationTransform
             self.introImage.alpha = 0
             self.whiteOutView.alpha = 0
-            //self.containerView.transform = .identity
         }) { (finished) in
             // Animation completion code
             self.whiteOutView.removeFromSuperview()
         }
     }
     
-    func showContinueOrCheck() {
-        for subview in bottomButtonsView.subviews {
-            subview.removeFromSuperview()
-        }
-        
-        bottomButtonsView.addSubview(continueStepButton)
-        continueStepButton.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
-        continueStepButton.addTarget(self, action: #selector(continueStepPressed), for: .touchUpInside)
-        
-        bottomButtonsView.addSubview(checkButton)
-        checkButton.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
-        checkButton.addTarget(self, action: #selector(checkPressed), for: .touchUpInside)
-        bottomBarView.isHidden = true
-    }
-    
-    func showWhyAndContinue() {
-        let lessonStep = lessonSteps[layout.currentPage]
-        guard lessonStep.type == .solvable else { return }
-        
-        for subview in bottomButtonsView.subviews {
-            subview.removeFromSuperview()
-        }
-        
-        let bottomButtonsStackView = UIStackView(arrangedSubviews: [whyButton, continueButton])
-        bottomButtonsStackView.axis = .horizontal
-        bottomButtonsStackView.spacing = 10
-        bottomButtonsStackView.distribution = .fillProportionally
-        
-        bottomButtonsView.addSubview(bottomButtonsStackView)
-        
-        bottomButtonsStackView.snp.makeConstraints { make in
-            make.width.centerX.equalToSuperview()
-        }
-        
-        whyButton.snp.makeConstraints { make in
-            make.bottom.equalTo(view).offset(-40)
-            make.height.equalTo(52)
-            make.width.greaterThanOrEqualTo(80).offset(-4)
-        }
-        
-        whyButton.addTarget(self, action: #selector(whyPressed), for: .touchUpInside)
-        
-        continueButton.snp.makeConstraints { make in
-            make.bottom.equalTo(view).offset(-40)
-            make.height.equalTo(52)
-            make.width.greaterThanOrEqualTo(80).offset(-4)
-        }
-        continueButton.addTarget(self, action: #selector(continuePressed), for: .touchUpInside)
-        
-        // Replace check button with why? + continue
-        view.layoutIfNeeded()
-        
-        // Update style for bottom bar
-        
-        guard let cell = collectionView.cellForItem(at: IndexPath(item: layout.currentPage, section: 0)) as? LessonStepCell,
-            let solvable = lessonStep.solvable else { return }
-        
-        // if it's an mcq
-        
-        if solvable.type == .mcq {
-            guard let selectedAnswer = cell.mcqAnswersView.selectedAnswer else { return }
-            if selectedAnswer.isCorrectAnswer {
-                whyButton.buttonStyle = .primaryDeemphasized
-                bottomBarView.style = .correct
-                continueButton.buttonStyle = .primaryCorrect
-                let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .heavy)
-                impactFeedbackgenerator.prepare()
-                impactFeedbackgenerator.impactOccurred()
-            } else {
-                bottomBarView.style = .incorrect
-                whyButton.buttonStyle = .primaryIncorrect
-                continueButton.buttonStyle = .primaryDeemphasized
-            }
-            cell.mcqAnswersView.updateAnswersForSubmitted()
-        } else {
-            guard let correctIndex = solvable.correctIndex, let chosenIndex = solvable.chosenIndex else { return }
-            if correctIndex == chosenIndex {
-                whyButton.buttonStyle = .primaryDeemphasized
-                bottomBarView.style = .correct
-                continueButton.buttonStyle = .primaryCorrect
-                let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .heavy)
-                impactFeedbackgenerator.prepare()
-                impactFeedbackgenerator.impactOccurred()
-            } else {
-                bottomBarView.style = .incorrect
-                whyButton.buttonStyle = .primaryIncorrect
-                continueButton.buttonStyle = .primaryDeemphasized
-            }
-        }
-        
-        lessonSteps[layout.currentPage].solvable?.isSolved = true
-        
-        // Update bottom bar view
-        
-        bottomBarView.snp.remakeConstraints { make in
-            make.width.centerX.equalToSuperview()
-            make.bottom.equalTo(view.snp_bottomMargin).inset(-safeAreaInsets.bottom)
-            make.height.equalTo(bottomBarView.style.height)
-        }
-        
-        bottomBarView.isHidden = false
-    }
-    
     func setupBottomBar() {
-        containerView.addSubview(bottomButtonsView)
-        
-        bottomButtonsView.snp.makeConstraints { make in
-            make.bottom.equalTo(view).offset(-40)
-            make.width.equalTo(view).multipliedBy(0.9)
-            make.centerX.equalTo(view)
-            make.height.equalTo(52)
-        }
-        
-        showContinueOrCheck()
-        
         containerView.addSubview(bottomBarView)
-        
         bottomBarView.snp.makeConstraints { make in
-            make.top.equalTo(view.snp_bottomMargin).offset(safeAreaInsets.bottom)
-            make.width.centerX.equalToSuperview()
+            make.bottom.width.centerX.equalTo(view)
+            make.height.equalTo(92)
         }
         
-        bottomBarView.setupViews()
-        
-        containerView.bringSubviewToFront(bottomButtonsView)
+        bottomBarView.showContinueOrCheck()
     }
     
     func pageDidChange() {
-        let lessonStep = lessonSteps[layout.currentPage]
-        let isSolvable = lessonStep.type == .solvable
-        // If it's a solvable, we want to make the Check button visible, else Continue
-        
-        let indexPath = IndexPath(item: layout.currentPage, section: 0)
+
+        bottomBarView.lessonStep = currentStep
         
         // if success/failure bar is still there, we should dismiss it!
         
-        UIView.animate(withDuration: 0.2) {
-            self.checkButton.alpha = isSolvable ? 1.0 : 0.0
-            self.continueStepButton.alpha = isSolvable ? 0.0 : 1.0
-            //self.view.backgroundColor = isSolvable ? UIColor.purple100 : .white
-            self.solvableModeImg.layer.opacity = isSolvable ? 0.5 : 0.0
-            
-//            if isSolvable {
-//                cell?.contentView.backgroundColor = .blue100
-//                cell?.backgroundColor = .blue100
-//            } else {
-//                cell?.contentView.backgroundColor = .white
-//                cell?.backgroundColor = .white
-//            }
-            
-        } completion: { completed in
-            // Actually HIDE the current one
-            self.showContinueOrCheck()
-            self.checkButton.isHidden = lessonStep.type != .solvable
-            self.checkButton.isEnabled = false
-            self.continueStepButton.isHidden = lessonStep.type == .solvable
-        }
-        
+        // Update progress bar
         progressView.updateProgressBar(with: CGFloat(layout.currentPage), from: CGFloat(lessonSteps.count-1))
         
+        // Update CTA names
         if layout.currentPage == lessonSteps.count - 1 {
-            continueStepButton.setTitle("Finish Lesson", for: .normal)
+            bottomBarView.updateContinueStepTitle(with: "Finish Lesson")
         } else {
-            continueStepButton.setTitle("Continue", for: .normal)
+            bottomBarView.updateContinueStepTitle(with: "Continue")
         }
     }
     
@@ -357,24 +303,18 @@ class LessonViewController: UIViewController {
         let currentPage = layout.currentPage
         let nextPage = currentPage + 1
         
-        let indexPath = IndexPath(item: nextPage, section: 0)
-        collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
-        layout.currentPage = nextPage
+        guard nextPage < lessonSteps.count else { return }
         
+        let indexPath = IndexPath(item: nextPage, section: 0)
+        switch layout.layoutType {
+        case .vertical, .verticalHug:
+            collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
+        case .horizontal:
+            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        }
+        
+        layout.currentPage = nextPage
         layout.previousOffset = layout.updateOffset(collectionView)
-    }
-    
-    @objc func checkPressed(sender: UIButton) {
-        showWhyAndContinue()
-    }
-    
-    @objc func whyPressed(sender: UIButton) {
-        print("Why pressed!")
-    }
-    
-    @objc func continuePressed(sender: UIButton) {
-        showContinueOrCheck()
-        continueToNextStep()
     }
     
     @objc func animateOnTap(recognizer: UITapGestureRecognizer) {
@@ -391,43 +331,35 @@ class LessonViewController: UIViewController {
         case .horizontal:
             layout.scrollDirection = .horizontal
             layout.itemSize.height = itemH
+            layout.minimumLineSpacing = 50.0
+            collectionView.contentInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
         case .vertical:
             layout.scrollDirection = .vertical
             layout.itemSize.height = itemH
+            layout.minimumLineSpacing = 50.0
+            collectionView.contentInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
         case .verticalHug:
             layout.scrollDirection = .vertical
+            layout.minimumLineSpacing = 50.0
+            collectionView.contentInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
             // TODO: Need to resolve how we parse the JSON for this
             //layout.itemSize.height = lessonSteps[0].height
         }
-
-        collectionView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
-        
-        layout.minimumLineSpacing = 15.0
-        layout.minimumInteritemSpacing = 15.0
-        
+                
         collectionView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.top.equalTo(progressView.snp.bottom)
-            make.bottom.equalTo(bottomButtonsView.snp.top).offset(-10)
+            make.bottom.equalTo(bottomBarView.snp.top)
         }
     }
 
 }
 
+// MARK: UICollectionViewDelegate
 extension LessonViewController: UICollectionViewDelegate {
     
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if decelerate {
-            //setupCells()
-        }
-    }
-    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let lessonStep = lessonSteps[layout.currentPage]
-        let isSolvable = lessonStep.type == .solvable
-        // If it's a solvable, we want to make the Check button visible, else Continue
-        
-        // if success/failure bar is still there, we should dismiss it!
+        let isSolvable = currentStep.type == .solvable
         
         if !isSolvable {
             self.solvableModeImg.layer.opacity = 0.0
@@ -439,17 +371,10 @@ extension LessonViewController: UICollectionViewDelegate {
         }
     }
     
+    // Especially for verticalHugging, this allows you to tap on the next item and smoothly scroll to it
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if indexPath.item == layout.currentPage {
-            print("didSelectItemAt: \(indexPath)")
-//            // let's make it big!
-//            guard let cell = collectionView.cellForItem(at: indexPath) else { return }
-//            if cell.transform == .identity {
-//                cell.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-//            } else {
-//                cell.transform = .identity
-//            }
             
         } else {
             collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
@@ -483,6 +408,7 @@ extension LessonViewController: UICollectionViewDelegate {
     }
 }
 
+// MARK: UICollectionViewDataSource
 extension LessonViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -494,7 +420,6 @@ extension LessonViewController: UICollectionViewDataSource {
                 
         let lessonStep = lessonSteps[indexPath.item]
         cell.lessonStep = lessonStep
-        //addShadow(to: cell)
         
         cell.solvableStepDidChange = { [weak self] in
             guard let self = self else { return }
@@ -505,7 +430,7 @@ extension LessonViewController: UICollectionViewDataSource {
     }
     
     func solvableStepDidChange() {
-        checkButton.isEnabled = true
+        bottomBarView.checkButton.isEnabled = true
     }
     
 }
@@ -537,56 +462,4 @@ extension LessonViewController: LessonStepLayoutDelegate {
             return itemH
         }
     }
-}
-
-// Extra functionality I don't care about right now
-extension LessonViewController {
-    private func addShadow(to cell: LessonStepCell) {
-//        cell.contentView.layer.cornerRadius = 20
-//        cell.contentView.layer.shadowColor = UIColor.black.cgColor
-//        cell.contentView.layer.shadowOpacity = 1
-//        cell.contentView.layer.shadowRadius = 20
-//        cell.contentView.layer.shadowOffset = CGSize(width: -1, height: 2)
-
-//        cell.shadowView.layer.cornerRadius = 20
-//        cell.shadowView.layer.shadowColor = UIColor.black.cgColor
-//        cell.shadowView.layer.shadowOpacity = 0.2
-//        cell.shadowView.layer.shadowRadius = 10
-//        cell.shadowView.layer.shadowOffset = CGSize(width: -1, height: 2)
-        
-//        cell.layer.cornerRadius = 2.0
-//        cell.layer.borderWidth = 1.0
-//        cell.layer.borderColor = UIColor.clear.cgColor
-//        cell.layer.masksToBounds = true
-
-//        cell.layer.cornerRadius = 20
-//        cell.layer.shadowColor = UIColor.black.cgColor
-//        cell.layer.shadowOpacity = 1
-//        cell.layer.shadowRadius = 20
-//        cell.layer.shadowOffset = CGSize(width: -1, height: 2)
-//        cell.layer.masksToBounds = false
-//        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
-
-    }
-    
-    private func removeShadow(from cell: UICollectionViewCell) {
-        cell.contentView.layer.shadowColor = UIColor.clear.cgColor
-    }
-    
-//    private func updateVerticalProgressBar(for indexPath: IndexPath) {
-//        let height = view.frame.height
-//        let increment = height / 12
-//        let currentHeight = CGFloat(indexPath.row) * increment
-//        progressBarView.snp.remakeConstraints { make in
-//            make.bottom.left.right.equalToSuperview()
-//            make.top.equalTo(view.snp.bottom).offset(-currentHeight)
-//        }
-//        
-//        UIView.animate(withDuration: 0.25) {
-//            // nothing
-//            self.view.layoutIfNeeded()
-//        } completion: { completed in
-//            // This does not animate
-//        }
-//    }
 }

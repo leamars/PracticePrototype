@@ -20,6 +20,7 @@ protocol LessonStepLayoutDelegate: AnyObject {
 class LessonStepLayout: UICollectionViewFlowLayout {
     weak var delegate: LessonStepLayoutDelegate?
     var previousOffset: CGFloat = 0.0
+    var isScrollingForward: Bool = true
     
     var pageDidChangeClosure: (() -> Void)?
     var pageDidChangeClosureValues: ((_ oldValue: Int, _ newValue: Int) -> Void)?
@@ -27,10 +28,13 @@ class LessonStepLayout: UICollectionViewFlowLayout {
         didSet {
             print("Changed current page to \(currentPage)!")
             pageDidChangeClosure?()
+            
+            isScrollingForward = oldValue < currentPage
+            print("Moving \(isScrollingForward ? "forward" : "back")")
         }
     }
     
-    let layoutType: LayoutType = .vertical
+    var layoutType: LayoutType = .horizontal
         
     private var contentWidth: CGFloat {
       guard let collectionView = collectionView else {
@@ -145,7 +149,7 @@ class LessonStepLayout: UICollectionViewFlowLayout {
             return offset
         case .horizontal:
             let w = cv.frame.width
-            let itemW = 356.25
+            let itemW = 352.0
             let sp = minimumLineSpacing
             let edge = (w - itemW - sp*2) / 2
             let offset = (itemW + sp) * CGFloat(currentPage) - (edge + sp)

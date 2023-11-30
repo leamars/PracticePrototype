@@ -173,7 +173,7 @@ class LessonStepCell: UICollectionViewCell {
         problemView.diagrammarImageView.image = UIImage(named: randomImageStr)
         
         let index = answerImages.firstIndex(of: randomImageStr)
-        lessonStep?.solvable?.chosenIndex = 1
+        lessonStep?.solvable?.chosenIndex = index
         
         solvableStepDidChange?()
     }

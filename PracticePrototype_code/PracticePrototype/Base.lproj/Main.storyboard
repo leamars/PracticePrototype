@@ -76,12 +76,21 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fhu-Cx-KPb">
-                                <rect key="frame" x="136" y="317" width="120" height="35"/>
+                                <rect key="frame" x="95" y="317" width="202" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Start Lesson"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Start Horizontal Lesson"/>
                                 <connections>
                                     <action selector="startLesson:" destination="e21-yz-4XT" eventType="touchUpInside" id="gvB-eR-NNU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vw2-KK-Uxk">
+                                <rect key="frame" x="106" y="366" width="181" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Start Vertical Lesson"/>
+                                <connections>
+                                    <action selector="startVerticalLesson:" destination="e21-yz-4XT" eventType="touchUpInside" id="ysU-Mt-CLX"/>
                                 </connections>
                             </button>
                         </subviews>

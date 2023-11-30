@@ -6,7 +6,8 @@
         "diagrammar":
         {
             "image": "dia_problem_1",
-            "caption": ""
+            "caption": "",
+            "altImages": []
         },
         "answers": [
             {
@@ -35,7 +36,12 @@
                 "image": "dia_solution_1_1",
                 "description": "Since the total weight of 4 balls is equal to 80 kg, the weight of each ball is 20 kg."
             }
-        ]
+        ],
+        "miniView": {
+            "correct": "data_dia_mini_2",
+            "incorrect": "data_dia_mini_2_alt"
+        },
+        "isSolved": false
     },
     {
         "question": "What is the weight of one triangle?",
@@ -43,7 +49,8 @@
         "diagrammar":
         {
             "image": "dia_problem_2",
-            "caption": ""
+            "caption": "",
+            "altImages": []
         },
         "answers": [
             {
@@ -80,7 +87,12 @@
                 "image": "dia_solution_2_3",
                 "description": "This means each red triangle weighs 30 ÷ 2 = 15 kg."
             }
-        ]
+        ],
+        "miniView": {
+            "correct": "data_dia_mini_2",
+            "incorrect": "data_dia_mini_2_alt"
+        },
+        "isSolved": false
     },
     {
         "question": "What is the weight of one square s and one triangle t?",
@@ -88,7 +100,8 @@
         "diagrammar":
         {
             "image": "dia_problem_3",
-            "caption": ""
+            "caption": "",
+            "altImages": []
         },
         "answers": [
             {
@@ -125,6 +138,11 @@
                 "image": "dia_solution_3_3",
                 "description": "If each square weighs 5 kg, then each triangle must weigh 20 kg. This is the correct answer."
             }
-        ]
+        ],
+        "miniView": {
+            "correct": "data_dia_mini_2",
+            "incorrect": "data_dia_mini_2_alt"
+        },
+        "isSolved": false
     }
 ]

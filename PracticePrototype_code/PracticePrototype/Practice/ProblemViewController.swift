@@ -26,7 +26,7 @@ class ProblemViewController: UIViewController {
     var solutionLabel = UILabel()
     var problemView: ProblemView
     var mcqAnswersView = MCQAnswersView()
-    var bottomBarView = BottomBarDrawerView(with: .correct)
+    var bottomBarView = SolvableResponseView(with: .correct)
     
     var bottomButtonsView = UIView()
     var checkButton = BitsButton.create(withStyle: .primary, title: "Check")
@@ -249,11 +249,12 @@ class ProblemViewController: UIViewController {
 //        maximizeBottomBarDrawerView()
         
         // HACK
-        maximizeBottomBarDrawerViewAlternate()
+        //maximizeSolvableResponseViewAlternate()
+        newMaximizeSolvableResponseView()
     }
     
     @objc func didTapOnBackground(sender: UITapGestureRecognizer) {
-        minimizeBottomBarDrawerView()
+        minimizeSolvableResponseView()
     }
 }
 
@@ -274,23 +275,64 @@ extension ProblemViewController: MCQAnswersViewDelegate {
     }
 }
 
-extension ProblemViewController: BottomBarDelegate {
-    func didChangeBottomBarMode(_ bottomBar: BottomBarDrawerView) {
+extension ProblemViewController: SolvableResponseDelegate {
+    func didChangeSolvableResponseMode(_ bottomBar: SolvableResponseView) {
         //
     }
     
-    func didSwipeDown(_ bottomBar: BottomBarDrawerView) {
-        minimizeBottomBarDrawerView()
+    func didSwipeDown(_ bottomBar: SolvableResponseView) {
+        minimizeSolvableResponseView()
     }
     
-    func didSwipeUp(_ bottomBar: BottomBarDrawerView) {
-//        maximizeBottomBarDrawerView()
+    func didSwipeUp(_ bottomBar: SolvableResponseView) {
         
         // HACK
-        maximizeBottomBarDrawerViewAlternate()
+        maximizeSolvableResponseViewAlternate()
     }
     
-    func maximizeBottomBarDrawerViewAlternate() {
+    func newMaximizeSolvableResponseView() {
+        guard let selectedAnswer = mcqAnswersView.selectedAnswer else { return }
+        
+        bottomBarView.titleStackView.isHidden = true
+        bottomBarView.snp.remakeConstraints { make in
+            make.width.centerX.bottom.equalToSuperview()
+            make.top.equalTo(problemView).offset(70)
+        }
+                
+        continueButton.buttonStyle = .primary
+        
+        whyButton.setTitleColor(.clear, for: .normal)
+        
+        navBarView.layer.opacity = 0
+        
+        UIView.animate(withDuration: 0.25) {
+            // nothing
+            self.view.backgroundColor = .gray100
+            
+            self.whyButton.backgroundColor = .clear
+            self.whyButton.isHidden = true
+            self.whyButton.superview?.setNeedsLayout()
+            self.whyButton.superview?.layoutIfNeeded()
+        } completion: { completed in
+            // This does not animate
+        }
+        
+        UIView.animate(withDuration: 0.30, delay: 0.05, usingSpringWithDamping: 1, initialSpringVelocity: 0.7) {
+            // Darken the background
+            //self.overlayView.backgroundColor = .black200
+            self.bottomBarView.mode = SolvableResponseMode.explanation
+            
+            // Animate bottom bar constraints
+            self.view.layoutIfNeeded()
+        } completion: { completion in
+            // This does not animate
+            self.bottomBarView.layer.cornerRadius = 0
+            self.bottomBarView.layer.borderColor = UIColor.gray100.cgColor
+            self.bottomBarView.layer.borderWidth = 1
+        }
+    }
+    
+    func maximizeSolvableResponseViewAlternate() {
         
         guard let selectedAnswer = mcqAnswersView.selectedAnswer else { return }
                 
@@ -350,7 +392,7 @@ extension ProblemViewController: BottomBarDelegate {
         UIView.animate(withDuration: 0.30, delay: 0.05, usingSpringWithDamping: 1, initialSpringVelocity: 0.7) {
             // Darken the background
             //self.overlayView.backgroundColor = .black200
-            self.bottomBarView.mode = BottomBarMode.explanation
+            self.bottomBarView.mode = SolvableResponseMode.explanation
             
             // Animate bottom bar constraints
             self.view.layoutIfNeeded()
@@ -391,7 +433,7 @@ extension ProblemViewController: BottomBarDelegate {
         UIView.animate(withDuration: 0.25, delay: 0.05, usingSpringWithDamping: 1, initialSpringVelocity: 0.7) {
             // Darken the background
             //self.overlayView.backgroundColor = .black200
-            self.bottomBarView.mode = BottomBarMode.explanation
+            self.bottomBarView.mode = SolvableResponseMode.explanation
             
             // Animate bottom bar constraints
             self.view.layoutIfNeeded()
@@ -401,7 +443,7 @@ extension ProblemViewController: BottomBarDelegate {
         
     }
     
-    func minimizeBottomBarDrawerView() {
+    func minimizeSolvableResponseView() {
         // FOR HACK
         //progressView.isHidden = false
         solutionLabel.removeFromSuperview()
@@ -440,7 +482,7 @@ extension ProblemViewController: BottomBarDelegate {
         UIView.animate(withDuration: 0.30, delay: 0.05, usingSpringWithDamping: 1, initialSpringVelocity: 0.7) {
             // Clear the background
             //self.overlayView.backgroundColor = .clear
-            self.bottomBarView.mode = BottomBarMode.result
+            self.bottomBarView.mode = SolvableResponseMode.result
             
             // Animate bottom bar constraints
             self.view.layoutIfNeeded()
